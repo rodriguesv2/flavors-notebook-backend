@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: caderno-sabores-api
+
+  datasource:
+    # URL de conexao. 'localhost:5433' e o padrao do nosso container.
+    url: jdbc:postgresql://localhost:5433/caderno_db
+    username: seu_usuario_local
+    password: sua_senha_local
+
+  jpa:
+    # Mostra o SQL gerado no console
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      # 'update' cria/atualiza as tabelas automaticamente
+      ddl-auto: update
