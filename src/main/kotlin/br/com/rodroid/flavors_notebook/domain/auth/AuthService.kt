@@ -3,9 +3,12 @@ package br.com.rodroid.flavors_notebook.domain.auth
 import br.com.rodroid.flavors_notebook.core.security.JwtService
 import br.com.rodroid.flavors_notebook.domain.auth.dto.AuthResponse
 import br.com.rodroid.flavors_notebook.domain.auth.dto.LoginRequest
+import br.com.rodroid.flavors_notebook.domain.user.AuthProvider.ANONYMOUS
+import br.com.rodroid.flavors_notebook.domain.user.User
 import br.com.rodroid.flavors_notebook.domain.user.UserRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class AuthService(
@@ -36,6 +39,28 @@ class AuthService(
             token = token,
             name = user.name,
             email = user.email,
+        )
+    }
+
+    fun loginAnonymous(): AuthResponse {
+        val uniqueId = UUID.randomUUID().toString().substring(0,8)
+        val fakeEmail = "anon-$uniqueId@guest.local"
+
+        val anonymousUser = User(
+            name = "Visitante",
+            email = fakeEmail,
+            password = null,
+            authProvider = ANONYMOUS,
+        )
+
+        val savedUser = userRepository.save(anonymousUser)
+
+        val token = jwtService.generateToken(savedUser)
+
+        return AuthResponse(
+            token = token,
+            name = savedUser.name,
+            email = savedUser.email
         )
     }
 }

@@ -37,4 +37,10 @@ class AuthController (
 
         return ResponseEntity.ok(response)
     }
+
+    @PostMapping("/anonymous")
+    fun loginAnonymous(): ResponseEntity<AuthResponse> {
+        val response = authService.loginAnonymous()
+        return ResponseEntity.ok(response)
+    }
 }

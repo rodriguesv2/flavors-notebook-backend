@@ -30,6 +30,7 @@ class SecurityConfig(
                     .requestMatchers(
                         "/api/auth/register",
                         "/api/auth/login",
+                        "/api/auth/anonymous",
                         "/error",
                     ).permitAll()
                     .anyRequest().authenticated()

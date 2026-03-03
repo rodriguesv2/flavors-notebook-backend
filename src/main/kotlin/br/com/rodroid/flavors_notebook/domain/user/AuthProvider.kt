@@ -4,4 +4,5 @@ enum class AuthProvider {
     LOCAL,
     GOOGLE,
     FACEBOOK,
+    ANONYMOUS,
 }
