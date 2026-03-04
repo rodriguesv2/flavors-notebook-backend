@@ -18,6 +18,6 @@ spring:
       # 'update' cria/atualiza as tabelas automaticamente
       ddl-auto: update
 
-  jwt:
-    secret: "uma-chave-secreta-muito-grande-para-o-nosso-caderno-de-sabores-api-segura"
-    expiration: 315360000000
+jwt:
+  secret: "uma-chave-secreta-muito-grande-para-o-nosso-caderno-de-sabores-api-segura"
+  expiration: 315360000000
