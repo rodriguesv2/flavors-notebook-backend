@@ -70,12 +70,10 @@ class NotebookService(
             throw IllegalArgumentException("Você não tem permissão para atualizar esse caderno")
         }
 
-        val newNotebook = notebook.copy(
-            name = request.name ?: notebook.name,
-            description = request.description ?: notebook.description,
-        )
+        notebook.name = request.name ?: notebook.name
+        notebook.description = request.description ?: notebook.description
 
-        val savedNotebook = notebookRepository.save(newNotebook)
+        val savedNotebook = notebookRepository.save(notebook)
 
         return NotebookResponse(
             id = savedNotebook.id!!,

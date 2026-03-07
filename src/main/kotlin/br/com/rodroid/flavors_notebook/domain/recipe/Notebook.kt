@@ -16,7 +16,7 @@ import java.util.UUID
 
 @Entity
 @Table(name = "notebooks")
-data class Notebook(
+class Notebook(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     var id: UUID? = null,
